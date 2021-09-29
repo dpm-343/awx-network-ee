@@ -1,0 +1,26 @@
+The included snmp_facts tool has a bug that results the message
+
+ValueError: invalid literal for int() with base 10: 'No more variables left in this MIB View'
+
+to be thrown when used against newer versions of Cisco IOS. This patch fixes the issue.
+
+https://github.com/networklore/ansible-snmp-facts/issues/3
+
+Apply to /usr/lib/python2.7/site-packages/ansible/modules/net_tools/snmp_facts.py
+
+---
++++
+
+413,414c413,415
+<                 ipv4_networks[curIP]['address'] = current_val
+<                 all_ipv4_addresses.append(current_val)
+---
+>                 if current_val != "No more variables left in this MIB View":
+>                     ipv4_networks[curIP]['address'] = current_val
+>                     all_ipv4_addresses.append(current_val)
+442c443,444
+<         results['ansible_interfaces'][int(interface)]['ipv4'] = interface_to_ipv4[interface]
+---
+>         if interface != "No more variables left in this MIB View":
+>             results['ansible_interfaces'][int(interface)]['ipv4'] = interface_to_ipv4[interface]
+
