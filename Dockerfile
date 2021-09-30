@@ -22,4 +22,6 @@ RUN dnf install -y patch
 RUN patch /usr/share/ansible/collections/ansible_collections/community/general/plugins/modules/net_tools/snmp_facts.py /tmp/snmp_facts.py.patch
 #RUN patch /usr/share/ansible/collections/ansible_collections/community/general/plugins/modules/snmp_facts.py /tmp/snmp_facts.py.patch
 
+RUN dnf install -y expect
+
 USER 1000
