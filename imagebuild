@@ -1,0 +1,5 @@
+docker build --tag ghcr.io/dpm-343/awx-network-ee:latest .
+echo $CR_PAT | docker login ghcr.io -u dpm-343 --password-stdin
+docker build --tag ghcr.io/dpm-343/awx-network-ee:latest .
+docker push ghcr.io/dpm-343/awx-network-ee:latest
+
