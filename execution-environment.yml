@@ -1,0 +1,15 @@
+---
+version: 2
+dependencies:
+  galaxy: requirements.yml
+  python: requirements.txt
+  system: bindep.txt
+
+additional_build_steps:
+  prepend: |
+    ADD ./snmp_facts.py.patch /tmp/snmp_facts.py.patch
+    RUN pip3 install --upgrade pip setuptools
+
+  append:
+    - RUN patch /usr/share/ansible/collections/ansible_collections/community/general/plugins/modules/net_tools/snmp_facts.py /tmp/snmp_facts.py.patch
+    - cat /etc/os-release

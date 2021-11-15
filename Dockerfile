@@ -20,6 +20,8 @@ RUN ansible-galaxy collection install -r /tmp/requirements.yml --collections-pat
 # install Python dependencies
 RUN pip install -r /tmp/requirements.txt
 
+RUN pip3 install psycopg2-binary
+
 # Apply snmp_facts pach
 RUN dnf install -y patch
 RUN patch /usr/share/ansible/collections/ansible_collections/community/general/plugins/modules/net_tools/snmp_facts.py /tmp/snmp_facts.py.patch
