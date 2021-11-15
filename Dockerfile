@@ -1,4 +1,4 @@
-FROM quay.io/ansible/awx-ee:0.5.0
+FROM quay.io/ansible/awx-ee:0.6.0
 
 USER root
 
@@ -10,6 +10,9 @@ ADD snmp_facts.py.patch /tmp/snmp_facts.py.patch
 
 # upgrade pip
 RUN /usr/bin/python3 -m pip install --upgrade pip
+
+# install pgsql utilities
+RUN dnf install -y postgresql
 
 # install Ansible Galaxy collections
 RUN ansible-galaxy collection install -r /tmp/requirements.yml --collections-path /usr/share/ansible/collections

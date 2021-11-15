@@ -3,3 +3,6 @@ collections:
   - community.general
   - ansible.netcommon
   - cisco.ios
+  - community.network
+  - community.postgresql
+  - paloaltonetworks.panos

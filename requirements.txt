@@ -1,4 +1,6 @@
 pan-python
 pandevice
+pan-os-python
+ipaddress
 xmltodict
 pysnmp
